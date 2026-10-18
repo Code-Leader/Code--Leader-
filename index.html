@@ -107,4 +107,5 @@ $('#app').innerHTML=`<div class="w"><div class="sec"><h2>My account</h2><p class
 function restoreUI(){modal(`<h2>Restore your account</h2><p class="mu">Paste the backup code you saved from your account page.</p><textarea id="rs" style="width:100%;height:100px;margin-bottom:8px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);padding:8px;font:12px monospace"></textarea><p class="er" id="er"></p><button class="btn" style="width:100%" onclick="restore()">Restore</button>`)}
 function restore(){try{const d=JSON.parse(decodeURIComponent(escape(atob($('#rs').value.trim()))));if(!d.e||!d.u||!d.u.H)throw 0;db.users[d.e]=d.u;db.unl[d.e]=d.l||{};db.prog[d.e]=d.p||{last:null,done:{}};db.me=d.e;save();modal();render();toast('Account restored')}catch(e){$('#er').textContent='Invalid backup code.'}}
 addEventListener('hashchange',()=>{modal();render()});render();
-</script></body></html>
+</script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5ecde6d93e9c4c93bb07a9cc2fc87e91"}'></script><!-- End Cloudflare Web Analytics -->
+</body></html>
