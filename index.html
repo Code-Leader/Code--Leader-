@@ -57,11 +57,12 @@ input,select{width:100%;padding:11px 12px;margin:0 0 10px;border-radius:10px;bor
 .tr{padding:8px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--bd)}.tm select{width:auto;margin:0}
 .out{margin:0;border-radius:0;min-height:64px;max-height:340px;overflow:auto;color:#8ff0a4;white-space:pre-wrap;border-top:1px solid var(--bd)}
 article.cd{font-size:18px}article.cd pre{font-size:16px;padding:18px}article.cd h2{font-size:30px}article.cd p,article.cd li{line-height:1.75}.li{font-size:16px;padding:12px}
+article code{background:var(--bd);padding:1px 6px;border-radius:6px;font-size:.92em}
 @media(max-width:760px){.hero,.lay{grid-template-columns:1fr}}
 </style></head><body>
 <div class="w"><nav><a class="lg" href="#">Code<b>Ladder</b></a><div class="nl" id="nv"></div></nav></div>
 <main id="app"></main>
-<div class="w"><footer><div>© 2026 CodeLadder. All rights reserved.</div><div><a href="#" onclick="info('terms');return false">Terms</a><a href="#" onclick="info('privacy');return false">Privacy</a><a href="#" onclick="info('refund');return false">Refunds</a><a href="#" onclick="info('contact');return false">Contact</a></div></footer></div>
+<div class="w"><footer><div>© 2026 CodeLadder. All rights reserved. <span class="mu">· v2.7</span></div><div><a href="#" onclick="info('terms');return false">Terms</a><a href="#" onclick="info('privacy');return false">Privacy</a><a href="#" onclick="info('refund');return false">Refunds</a><a href="#" onclick="info('contact');return false">Contact</a><a href="#/feedback">Feedback</a></div></footer></div>
 <div id="m" onclick="if(event.target===this)modal()"></div><div id="t"></div>
 <script>
 const WORKER_URL='https://code-leader.olikenyow.workers.dev',SECRET='',ADMIN='',ACC={n:'Olikenyo Williams',b:'Moniepoint Business',a:'7015922520'};
@@ -84,7 +85,7 @@ function modal(x){const m=$('#m');if(!x){m.className='';m.innerHTML='';return}m.
 document.addEventListener('keydown',e=>{if(e.key==='Escape')modal()});
 const tier=(k)=>{const u=me();return u&&(db.unl[u.e]||{})[k]};
 const ok=(k,i)=>{const t=TIERS[tier(k)];return i<3||(!!t&&i<t.u)};
-function nav(){const u=me();$('#nv').innerHTML=`<a href="#/languages">Languages</a><a href="#/pricing">Pricing</a><a href="#/how">How it works</a><a href="#/play">▶ Practice</a>`+(u?`${{premium:'<span class="tag pb">👑 Premium</span>',elite:'<span class="tag pb">💎 Full access</span>'}[tierOf()]||''}<a href="#/account">👤 ${esc(u.n.split(' ')[0])}</a><button class="btn g s" onclick="out()">Log out</button>`:`<button class="btn g s" onclick="auth('in')">Log in</button><button class="btn s" onclick="auth('up')">Sign up</button>`)}
+function nav(){const u=me();$('#nv').innerHTML=`<a href="#/languages">Languages</a><a href="#/pricing">Pricing</a><a href="#/how">How it works</a><a href="#/course">🎓 Web Dev</a><a href="#/play">▶ Practice</a>`+(u?`${{premium:'<span class="tag pb">👑 Premium</span>',elite:'<span class="tag pb">💎 Full access</span>'}[tierOf()]||''}<a href="#/account">👤 ${esc(u.n.split(' ')[0])}</a><button class="btn g s" onclick="out()">Log out</button>`:`<button class="btn g s" onclick="auth('in')">Log in</button><button class="btn s" onclick="auth('up')">Sign up</button>`)}
 function out(){db.me=null;save();location.hash='';render();toast('Logged out')}
 function auth(md){const i=md==='in';modal(`<h2>${i?'Welcome back':'Create your account'}</h2>${i?'':'<input id="n" placeholder="Full name" autocomplete="name">'}<input id="e" type="email" placeholder="Email" autocomplete="email"><input id="p" type="password" placeholder="Password (min 6 characters)" autocomplete="${i?'current-password':'new-password'}"><p class="er" id="er"></p><button class="btn" style="width:100%" onclick="go('${md}')">${i?'Log in':'Sign up'}</button><p class="mu" style="text-align:center;font-size:14px">${i?`New here? <a href="#" onclick="auth('up');return false">Create an account</a> · <a href="#" onclick="restoreUI();return false">Restore backup</a>`:`Already registered? <a href="#" onclick="auth('in');return false">Log in</a>`}</p>`)}
 async function go(md){const e=$('#e').value.trim().toLowerCase(),p=$('#p').value,n=md==='up'?$('#n').value.trim():'',er=$('#er');
@@ -100,26 +101,26 @@ $('#app').innerHTML=`<div class="w"><section class="hero"><div><span class="tag"
 <section class="sec" id="langs"><h2>Choose a language</h2><div class="grid">${g}</div></section>
 <section class="sec" id="pricing"><h2>Simple pricing, per language</h2><div class="grid"><div class="cd pr"><h3>Free</h3><b>₦0</b><ul><li>Lessons 1–3 of every language</li><li>Account required</li></ul></div><div class="cd pr"><h3>Starter</h3><b>₦5,000</b><ul><li>Lessons 1–5 of one language</li><li>2 lessons beyond the free ones</li><li>Upgrade later: you only pay the difference</li></ul></div><div class="cd pr"><h3>Plus</h3><b>₦10,000</b><ul><li>Lessons 1–7 of one language</li><li>4 lessons beyond the free ones</li></ul></div><div class="cd pr hot"><h3>Full ⭐ Best value</h3><b>₦20,000</b><ul><li>All 12 lessons of one language</li><li>Includes 2 bonus lessons: a mini project and next steps</li><li>Each extra language: same price</li></ul></div></div></section>
 <section class="sec" id="how"><h2>How it works</h2><div class="grid st"><div class="cd"><h3>Sign up</h3><p class="mu">Create a free account and log in.</p></div><div class="cd"><h3>Try 3 free lessons</h3><p class="mu">Pick any language and begin.</p></div><div class="cd"><h3>Pay by transfer</h3><p class="mu">Pick a plan (₦5,000, ₦10,000 or ₦20,000) and transfer it to our account.</p></div><div class="cd"><h3>Enter your code</h3><p class="mu">Receive your unlock code and enter it to open the lessons.</p></div></div></section></div>`}
-function lesson(k,i){const l=L[k],u=me();if(!l)return home();i=Math.min(Math.max(i,0),l[2].length-1);const [t,c]=l[2][i].split('|'),a=ok(k,i),T=tier(k);if(u&&a){pg().last=k+'/'+i;save()}
+function lesson(k,i){if(k==='wd')return chapter(i);const l=L[k],u=me();if(!l)return home();i=Math.min(Math.max(i,0),l[2].length-1);const [t,c]=l[2][i].split('|'),a=ok(k,i),T=tier(k);if(u&&a){pg().last=k+'/'+i;save()}
 const lst=l[2].map((x,j)=>`<a class="li ${j==i?'on':''}" href="#/${k}/${j}"><span>${j+1}</span>${x.split('|')[0]}<i>${ok(k,j)?(isD(k,j)?'✓':j<3?'<em class="tag">Free</em>':'<em class="tag pb">★</em>'):'🔒'}</i></a>`).join('');
 const body=a?`<h2>${i+1}. ${t}</h2>${intro(k,i,t)}<pre>${esc(c.replace(/~/g,'\n'))}</pre>${outro(k,i,t)}<p>${i>0?`<a class="btn g s" href="#/${k}/${i-1}">← Previous</a> `:''}${i<l[2].length-1?`<a class="btn s" href="#/${k}/${i+1}">Next lesson →</a>`:''}</p>`:
 `<h2>🔒 ${i+1}. ${t}</h2><p class="mu">This lesson is locked. Unlock it with a payment, then enter the code you receive.</p>${Object.entries(TIERS).filter(([n,x])=>x.u>i).map(([n,x])=>`<p><button class="btn ${n==='full'?'':'g'}" onclick="pay('${k}','${n}')">${T?'Upgrade to':'Unlock'} ${x.n} – ₦${due(k,n).toLocaleString()}${T?' more':''}</button></p>`).join('')}`;
 $('#app').innerHTML=`<div class="w"><p><a href="#">← All languages</a></p><h1>${l[1]} ${l[0]} ${TIERS[T]?`<span class="tag">${TIERS[T].n} access</span>`:''}</h1><div class="lay"><aside>${lst}</aside><article class="cd">${body}</article></div></div>`}
-function pay(k,t){const u=me(),amt='₦'+due(k,t).toLocaleString(),l=L[k][0],wa='https://wa.me/2347015922520?text='+encodeURIComponent(`Hello, I have paid ${amt} for the ${l} ${TIERS[t].n} plan${paid(k)?' (upgrade from '+TIERS[tier(k)].n+')':''} on CodeLadder.
+function pay(k,t){const u=me(),amt='₦'+due(k,t).toLocaleString(),l=LN(k),wa='https://wa.me/2347015922520?text='+encodeURIComponent(`Hello, I have paid ${amt} for the ${l} ${TT(k)[t].n} plan${paid(k)?' (upgrade from '+TT(k)[tier(k)].n+')':''} on CodeLadder.
 Name: ${u.n}
 Email: ${u.e}
-My receipt is attached.`);modal(`<h2>Unlock ${l} – ${TIERS[t].n} (${amt})</h2>${paid(k)?`<p class="mu">You already paid ₦${paid(k).toLocaleString()} for this language, so you only pay the difference.</p>`:''}${PAYSTACK_KEY?`<button class="btn" style="width:100%;margin-bottom:6px" onclick="ps('${k}','${t}')">Pay ${amt} now – instant unlock</button><p class="mu" style="text-align:center;margin:6px 0">or pay by bank transfer and enter a code</p>`:''}<p class="mu">Step 1: Transfer <b>${amt}</b> to:</p><div class="bank"><b>${ACC.n}</b><br>${ACC.b}<br>Account no: <b id="ac">${ACC.a}</b> <button class="btn g s" onclick="cp('${ACC.a}');toast('Account number copied')">Copy</button><br><span class="mu">Narration: ${l} ${t} – ${esc(u.e)}</span></div><p class="mu">Step 2: After paying, send your receipt on WhatsApp so we can confirm and send your unlock code.</p><a class="btn" style="display:block;text-align:center;margin-bottom:12px" href="${wa}" target="_blank" rel="noopener">Send receipt on WhatsApp</a><p class="mu">Step 3: Enter your unlock code here:</p><input id="cd" placeholder="e.g. PYH-1234-AB12C" style="text-transform:uppercase"><p class="er" id="er"></p><button class="btn" style="width:100%" onclick="redeem('${k}')">Unlock lessons</button>`)}
+My receipt is attached.`);modal(`<h2>Unlock ${l} – ${TT(k)[t].n} (${amt})</h2>${paid(k)?`<p class="mu">You already paid ₦${paid(k).toLocaleString()} for this language, so you only pay the difference.</p>`:''}${PAYSTACK_KEY?`<button class="btn" style="width:100%;margin-bottom:6px" onclick="ps('${k}','${t}')">Pay ${amt} now – instant unlock</button><p class="mu" style="text-align:center;margin:6px 0">or pay by bank transfer and enter a code</p>`:''}<p class="mu">Step 1: Transfer <b>${amt}</b> to:</p><div class="bank"><b>${ACC.n}</b><br>${ACC.b}<br>Account no: <b id="ac">${ACC.a}</b> <button class="btn g s" onclick="cp('${ACC.a}');toast('Account number copied')">Copy</button><br><span class="mu">Narration: ${l} ${t} – ${esc(u.e)}</span></div><p class="mu">Step 2: After paying, send your receipt on WhatsApp so we can confirm and send your unlock code.</p><a class="btn" style="display:block;text-align:center;margin-bottom:12px" href="${wa}" target="_blank" rel="noopener">Send receipt on WhatsApp</a><p class="mu">Step 3: Enter your unlock code here:</p><input id="cd" placeholder="e.g. PYH-1234-AB12C" style="text-transform:uppercase"><p class="er" id="er"></p><button class="btn" style="width:100%" onclick="redeem('${k}')">Unlock lessons</button>`)}
 function redeem(k){if(WORKER_URL)return wredeem(k);const u=me(),er=$('#er'),c=$('#cd').value.trim().toUpperCase(),m=/^([A-Z]+)([HF])-(\d{4})-([A-Z0-9]{5})$/.exec(c);
 if(!m||h(m[1]+m[2]+m[3])!==m[4])return er.textContent='Invalid code. Check and try again.';
 const lk=m[1].toLowerCase();if(!L[lk])return er.textContent='Invalid code.';if(db.used.includes(c))return er.textContent='This code has already been used.';
 const tr=m[2]==='F'?'full':'half',o=db.unl[u.e]=db.unl[u.e]||{};if(o[lk]!=='full')o[lk]=tr;db.used.push(c);save();modal();render();toast(L[lk][0]+' unlocked 🎉 Premium theme on 👑')}
-function admin(){$('#app').innerHTML=`<div class="w"><h1>Code generator</h1><p class="mu">Generate an unlock code after you confirm a customer's payment. Upgrades: Starter to Plus ₦5,000, Starter to Full ₦15,000, Plus to Full ₦10,000. Generate the code for the NEW plan.</p><div class="cd" style="max-width:420px"><input id="ap" type="password" placeholder="Admin passcode"><select id="al">${Object.entries(L).map(([k,l])=>`<option value="${k}">${l[0]}</option>`).join('')}</select><select id="at"><option value="S">Starter – ₦5,000</option><option value="H">Plus – ₦10,000</option><option value="F">Full – ₦20,000</option></select><button class="btn" onclick="gen()">Generate code</button><p id="ao" style="font:700 20px monospace;word-break:break-all"></p></div></div>`}
+function admin(){$('#app').innerHTML=`<div class="w"><h1>Code generator</h1><p class="mu">Generate an unlock code after you confirm a customer's payment. Upgrades: Starter to Plus ₦5,000, Starter to Full ₦15,000, Plus to Full ₦10,000. Generate the code for the NEW plan.</p><div class="cd" style="max-width:420px"><input id="ap" type="password" placeholder="Admin passcode"><select id="al">${Object.entries(L).map(([k,l])=>`<option value="${k}">${l[0]}</option>`).join('')}<option value="wd">Web Developer course (Plus = Part 1, Full = whole course)</option></select><select id="at"><option value="S">Starter – ₦5,000</option><option value="H">Plus – ₦10,000</option><option value="F">Full – ₦20,000</option></select><button class="btn" onclick="gen()">Generate code</button><p id="ao" style="font:700 20px monospace;word-break:break-all"></p></div></div>`}
 function gen(){if(WORKER_URL)return wgen();if($('#ap').value!==ADMIN)return toast('Wrong passcode');const a=$('#al').value.toUpperCase()+$('#at').value,s=String(1000+Math.floor(Math.random()*9000)),c=`${a}-${s}-${h(a+s)}`;$('#ao').textContent=c;cp(c);toast('Code generated & copied')}
-const T={terms:['Terms of Use','By creating an account you agree to use CodeLadder lawfully, keep your login private and not share or resell lesson content or unlock codes. Each code unlocks one language for one account.'],privacy:['Privacy Policy','We collect your name, email and learning progress only to run your account. We never sell your data. Contact us to request deletion of your account.'],refund:['Refund Policy','Lessons unlock instantly with a valid code, so payments are generally non-refundable. If you paid and have a problem accessing your lessons, contact us and we will fix it.'],contact:['Contact Us','Questions about payments or access? Send your payment receipt and the email you registered with on WhatsApp to <a href="https://wa.me/2347015922520" target="_blank" rel="noopener">07015922520</a>, and we will send your unlock code.']};
+const T={terms:['Terms of Use','By creating an account you agree to use CodeLadder lawfully, keep your login private and not share or resell lesson content or unlock codes. Each code unlocks one language for one account.'],privacy:['Privacy Policy','We collect your name, email and learning progress only to run your account. We never sell your data. Contact us to request deletion of your account.'],refund:['Refund Policy','Lessons unlock instantly with a valid code, so payments are generally non-refundable. If you paid and have a problem accessing your lessons, contact us and we will fix it.'],contact:['Contact Us','Questions about payments or access? Send your payment receipt and the email you registered with on WhatsApp to <a href="https://wa.me/2347015922520" target="_blank" rel="noopener">07015922520</a>, and we will send your unlock code. You can also email <a href="mailto:codeladder26@gmail.com">codeladder26@gmail.com</a>.']};
 function info(k){modal(`<h2>${T[k][0]}</h2><p class="mu">${T[k][1]}</p>`)}
 const tierOf=()=>{const u=me(),v=Object.values(u&&db.unl[u.e]||{});return v.includes('full')?'elite':v.length?'premium':''};const skin=()=>{document.documentElement.dataset.tier=tierOf()};
 function render(){skin();nav();const hs=location.hash,m=/^#\/(\w+)\/(\d+)$/.exec(hs);
-if(hs==='#admin')return admin();if(m){if(!me()){page('home');auth('in');return}return lesson(m[1],+m[2])}const r=hs.replace('#/','');if(r==='account'){if(!me()){page('home');auth('in');return}return account()}if(r==='play'){if(!me()){page('home');auth('in');return}return play()}page(['languages','pricing','how'].includes(r)?r:'home');window.scrollTo(0,0)}
+if(hs==='#admin')return admin();if(m){if(!me()){page('home');auth('in');return}return lesson(m[1],+m[2])}const r=hs.replace('#/','');if(r==='account'){if(!me()){page('home');auth('in');return}return account()}if(r==='play'){if(!me()){page('home');auth('in');return}return play()}if(r==='feedback')return feedback();if(r==='course')return courseHome();page(['languages','pricing','how'].includes(r)?r:'home');window.scrollTo(0,0)}
 const X={py:['Every programmer starts with Hello World. The print function sends text to the screen. Anything inside quotes is a string, which Python shows exactly as written. Run the line below and you have written your first program.','A variable is a labelled box that stores a value. Write the name, an equals sign, then the value. Use clear names like age or name, never start a name with a number, and remember Python is case-sensitive.','Every value has a type: str for text, int for whole numbers, float for decimals and bool for True or False. Use type to check what you have, because mixing types is a common source of errors.'],js:['The console.log function prints a message to the browser console, your best friend for testing code. Statements usually end with a semicolon. Open DevTools with F12 and run the line to see the output.','Use let for values that will change and const for values that must stay fixed. Prefer const by default. The old var keyword is best avoided in new code.','JavaScript has strings, numbers, booleans, null, undefined, arrays and objects. The typeof operator tells you the type of a value. Beware that typeof null returns object, a famous quirk.'],web:['HTML describes the structure of a page. The h1 tag marks the main heading. Tags usually come in pairs, an opening tag and a closing tag with a slash. Save your file as index.html and open it in a browser.','Paragraphs use p tags and links use the a tag with an href attribute pointing to the destination. Attributes give extra information to a tag and always go inside the opening tag.','The img tag shows a picture. The src attribute is the file location and alt is a text description used by screen readers and shown if the image fails to load. Always write a meaningful alt.'],java:['Java programs live inside classes. The System.out.println method prints a line of text. Every statement ends with a semicolon and Java is strict about spelling and capital letters.','Java needs you to declare the type of a variable first, such as int for whole numbers or String for text. Then name it and give it a value. The type cannot change later.','Primitive types include int, double, boolean and char. A double stores decimals. Choose the smallest type that fits your data, and remember that String is an object, not a primitive.'],cpp:['C++ prints with std::cout and the << operator. You must include the iostream header first. Code runs inside the main function and each statement ends with a semicolon.','Declare a variable by giving its type, name and value, for example int age = 20. C++ is statically typed, so the compiler checks types before your program ever runs.','Common types are int, double, char, bool and std::string. Each takes a different amount of memory. Use double for decimals and watch out for integer overflow.'],sql:['SQL talks to databases. SELECT chooses which columns to read and FROM names the table. The star means every column. Keywords are conventionally written in capitals.','WHERE filters rows so you only get the ones that match a condition, like age above 18. Combine conditions with AND and OR, and put quotes around text values.','ORDER BY sorts your results. Add DESC for highest first, or ASC (the default) for lowest first. You can sort by several columns, separated by commas.'],php:['PHP runs on the server and echo outputs text to the page. PHP code sits between the opening and closing PHP tags. Each statement ends with a semicolon.','PHP variables always start with a dollar sign. You do not declare a type, PHP works it out. Names are case-sensitive, so $name and $Name are different variables.','Strings can use single or double quotes, and double quotes let you place variables inside the text. Built-in functions like strlen and strtoupper save a lot of work.']};
 const pg=()=>{const u=me();return db.prog[u.e]=db.prog[u.e]||{last:null,done:{}}};
 const isD=(k,i)=>{const u=me();return !!(u&&db.prog[u.e]&&(db.prog[u.e].done[k]||[]).includes(i))};
@@ -129,7 +130,7 @@ const outro=(k,i,t)=>`<h3 style="margin-top:18px">Try it yourself</h3>${term(k,L
 function page(p){home();const K={home:['.hero'],languages:['#langs'],pricing:['#pricing'],how:['#how']}[p];['.hero','#langs','#pricing','#how'].forEach(s=>{if(!K.includes(s))$(s).style.display='none'});if(p!=='home')return;const u=me(),q=u&&pg().last,x=q&&q.split('/');
 const cont=x&&L[x[0]]?`<div class="cd" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px"><div><b>Continue where you stopped</b><br><span class="mu">${L[x[0]][0]} · Lesson ${+x[1]+1}</span></div><a class="btn" href="#/${q}">Resume →</a></div>`:'';
 const cs='padding:8px 14px;font-size:14px;text-decoration:none';const chips=Object.entries(L).slice(0,8).map(([k,l])=>`<a class="tag" style="${cs}" href="#/${k}/0">${l[1]} ${l[0]}</a>`).join('');
-$('.hero').insertAdjacentHTML('afterend',cont+`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 40px">${chips}<a class="tag" style="${cs}" href="#/languages">All languages →</a></div>`+FLY)}
+$('.hero').insertAdjacentHTML('afterend',cont+`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 40px">${chips}<a class="tag" style="${cs}" href="#/languages">All languages →</a></div>`+WDB+FLY)}
 const bk=()=>{const u=me();return btoa(unescape(encodeURIComponent(JSON.stringify({e:u.e,u:db.users[u.e],l:db.unl[u.e]||{},p:pg()}))))};
 function account(){const u=me(),p=pg(),un=db.unl[u.e]||{};const rows=Object.entries(L).map(([k,l])=>{const n=(p.done[k]||[]).length;return `<div class="cd"><b>${l[1]} ${l[0]}</b> <span class="tag">${TIERS[un[k]]?TIERS[un[k]].n:'Free'}</span><div style="height:8px;background:var(--bd);border-radius:9px;margin:10px 0"><div style="height:8px;width:${n*100/l[2].length}%;background:var(--ac);border-radius:9px"></div></div><span class="mu">${n}/${l[2].length} completed</span> · <a href="#/${k}/${Math.min(n,l[2].length-1)}">Open</a></div>`}).join('');
 $('#app').innerHTML=`<div class="w"><div class="sec"><h2>My account</h2><p class="mu">${esc(u.n)} · ${esc(u.e)}</p><div class="grid">${rows}</div></div><div class="cd" style="max-width:600px"><h3>Back up your progress</h3><p class="mu">Your progress is saved on this device. Copy this backup code and keep it safe. Use it to restore your account, unlocked lessons and progress on another device or after clearing your browser.</p><textarea id="bk" readonly onclick="this.select()" style="width:100%;height:90px;margin:8px 0;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);padding:8px;font:12px monospace">${bk()}</textarea><button class="btn s" onclick="cp($('#bk').value);toast('Backup copied')">Copy backup</button></div></div>`}
@@ -137,7 +138,7 @@ function restoreUI(){modal(`<h2>Restore your account</h2><p class="mu">Paste the
 function restore(){try{const d=JSON.parse(decodeURIComponent(escape(atob($('#rs').value.trim()))));if(!d.e||!d.u||!d.u.H)throw 0;db.users[d.e]=d.u;db.unl[d.e]=d.l||{};db.prog[d.e]=d.p||{last:null,done:{}};db.me=d.e;save();modal();render();toast('Account restored')}catch(e){$('#er').textContent='Invalid backup code.'}}
 const PAYSTACK_KEY='';
 const TIERS={start:{n:'Starter',p:5000,u:5},half:{n:'Plus',p:10000,u:7},full:{n:'Full',p:20000,u:12}},RK={start:1,half:2,full:3};
-const paid=k=>{const t=TIERS[tier(k)];return t?t.p:0},due=(k,t)=>Math.max(0,TIERS[t].p-paid(k));
+const paid=k=>{const t=TT(k)[tier(k)];return t?t.p:0},due=(k,t)=>Math.max(0,TT(k)[t].p-paid(k));
 const X2={py:['Operators do maths and comparisons. // divides and drops decimals, % gives the remainder and ** raises to a power.','Strings are text. Use methods like upper, lower and strip, join them with +, and place values inside using f-strings.','A list holds many items in order. Use append to add, indexes starting at 0 to read, and len to count them.','if, elif and else let your program choose. Python uses indentation, so keep the spacing exactly consistent.','Loops repeat work. for goes through a range or a list, while repeats until a condition turns false. Avoid endless loops.','A function packages code you can reuse. def names it, parameters take inputs and return sends back a result.','A class is a blueprint for objects. It groups data and functions, and each object made from it has its own values.'],
 js:['Arithmetic works as in maths, and === compares value and type. Prefer === over == to avoid surprising results.','Template strings use backticks and place variables inside with a dollar sign and braces. Methods like slice and includes help a lot.','Arrays store lists. map transforms every item, filter keeps some, and push adds a new item at the end.','if, else if and else run code based on a condition. Truthy and falsy values, like 0 and an empty string, also matter.','for repeats a set number of times and for...of walks through an array. Check the loop condition so it ends.','Functions bundle code for reuse. Arrow functions give a shorter way to write them, and return sends back a value.','The DOM is the page as JavaScript sees it. Select an element, then attach an event so code runs when a user clicks.'],
 web:['Lists organise content: ul for bullets, ol for numbers and li for each item. Tables use table, tr and td for rows and cells.','Forms collect input. Each input has a type and name, and a label helps accessibility. required stops empty submissions.','A CSS selector chooses which elements to style: by tag, by .class or by #id. Specific selectors override general ones.','Every element is a box made of content, padding, border and margin. Learning this fixes most spacing problems.','Flexbox lines items up in a row or column. Use justify-content and align-items to position them, and gap for spacing.','Grid lays out rows and columns together. Define columns with grid-template-columns for neat card layouts.','Media queries change styles by screen size. Build for phones first, then add rules for larger screens.'],
@@ -147,10 +148,10 @@ sql:['INSERT INTO adds a new row. List the columns, then the values in the same 
 php:['An array holds several values. Create one with square brackets, read items by index and add more with the [] shortcut.','if, elseif and else decide what runs. Use === to compare value and type, and && or || to join conditions.','foreach walks through every item in an array, while for repeats a set number of times. Pick the one that fits.','A function groups code you can call again. Use function, a name and parameters, and return to send a result back.','Forms send data to PHP in the $_POST or $_GET arrays. Always clean user input before using it.','Sessions remember a user between pages. Call session_start first, then store values in the $_SESSION array.','PDO connects PHP to a MySQL database safely. Use prepared statements so user input can never break your queries.']};
 async function wredeem(k){const u=me(),er=$('#er'),c=$('#cd').value.trim().toUpperCase();er.textContent='Checking…';
 try{const r=await fetch(WORKER_URL+'/redeem',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code:c,email:u.e})}),d=await r.json();
-if(!d.ok||!L[d.lang])return er.textContent=d.error||'Invalid code.';grant(d.lang,d.tier)}catch(e){er.textContent='Network problem. Check your internet and try again.'}}
+if(!d.ok||!(L[d.lang]||d.lang==='wd'))return er.textContent=d.error||'Invalid code.';grant(d.lang,d.tier)}catch(e){er.textContent='Network problem. Check your internet and try again.'}}
 async function wgen(){try{const r=await fetch(WORKER_URL+'/gen',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({pass:$('#ap').value,lang:$('#al').value,tier:$('#at').value})}),d=await r.json();if(!d.code)return toast(d.error||'Failed');$('#ao').textContent=d.code;cp(d.code);toast('Code generated & copied')}catch(e){toast('Network problem')}}
 let seed=null;
-const grant=(k,tr)=>{const u=me(),o=db.unl[u.e]=db.unl[u.e]||{};if((RK[o[k]]||0)<RK[tr])o[k]=tr;save();modal();render();toast(L[k][0]+' unlocked 🎉')};
+const grant=(k,tr)=>{const u=me(),o=db.unl[u.e]=db.unl[u.e]||{};if((RK[o[k]]||0)<RK[tr])o[k]=tr;save();modal();render();toast(LN(k)+' unlocked 🎉')};
 function ps(k,t){const u=me(),amt=due(k,t),go=()=>PaystackPop.setup({key:PAYSTACK_KEY,email:u.e,amount:amt*100,currency:'NGN',ref:'CL'+Date.now(),metadata:{lang:k,tier:t},callback:r=>grant(k,t),onClose:()=>{}}).openIframe();if(window.PaystackPop)return go();const e=document.createElement('script');e.src='https://js.paystack.co/v1/inline.js';e.onload=go;e.onerror=()=>toast('Could not load payment. Check your internet.');document.head.appendChild(e)}
 addEventListener('message',e=>{const f=$('#pf');if(f&&e.source===f.contentWindow&&e.data&&e.data.cl!==undefined){const o=$('#po');o.textContent+=(o.textContent?'\n':'')+e.data.cl}});
 const FLY=`<div class="cd" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:0 0 40px"><a href="flyer.png" target="_blank" rel="noopener"><img src="flyer.png" alt="CodeLadder flyer" loading="lazy" style="width:200px;display:block;border-radius:14px;border:2px solid #c9d1e3aa"></a><div style="flex:1;min-width:200px"><h3>Know someone who wants to code?</h3><p class="mu">Share our flyer with friends and family.</p><a class="btn s" href="flyer.png" download="CodeLadder-flyer.png">Download flyer</a> <a class="btn g s" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent('Learn to code with CodeLadder. 3 free lessons in every language: https://code-leader.github.io/Code--Leader-/')}">Share on WhatsApp</a></div></div>`;
@@ -197,6 +198,277 @@ const nm={java:'Java',php:'PHP',cs:'C#',go:'Go',rs:'Rust',rb:'Ruby',sw:'Swift',t
 if(!cs.length)throw 0;const r=await(await fetch('https://wandbox.org/api/compile.json',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({compiler:cs[0].name,code:wrapCode(l,c),stdin:inp?inp+'\n':'',save:false})})).json();
 $('#po').textContent='';[r.compiler_error,r.program_output,r.program_error].filter(Boolean).forEach(put);if(!$('#po').textContent)put('(no output)')}catch(e){$('#po').textContent='Could not reach the online code service. Check your internet and try again in a moment.'}}
 document.addEventListener('keydown',e=>{const t=e.target;if(!t||t.id!=='pc')return;if(e.key==='Tab'){e.preventDefault();const p=t.selectionStart;t.value=t.value.slice(0,p)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=p+2}if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run()}});
+const VERSION='v2.7',FB_MAIL='codeladder26@gmail.com',FB_WA='2347015922520';
+function feedback(){const u=me();$('#app').innerHTML=`<div class="w"><div class="sec"><h2>Send us your feedback</h2><p class="mu">Tell us what to improve, what is not working, or what you love. Choose how you want to send it.</p><div class="cd" style="max-width:640px"><select id="ft"><option>Suggestion</option><option>Problem</option><option>Question</option><option>Praise</option></select><textarea id="fm" class="ed" style="height:160px" spellcheck="true" placeholder="Type your feedback here..."></textarea><p class="er" id="fe"></p><button class="btn" onclick="sendFb('wa')">Send on WhatsApp</button> <button class="btn g" onclick="sendFb('mail')">Send by email</button><p class="mu" style="font-size:13px;margin-top:12px">Your message opens in WhatsApp or your email app, ready to send.${u?' Your name and email are added so we can reply.':''}</p></div></div></div>`}
+function fbText(){const u=me(),t=$('#ft').value,m=$('#fm').value.trim();return m?'CodeLadder feedback ('+VERSION+')\nType: '+t+'\n'+(u?'From: '+u.n+' ('+u.e+')\n':'')+'\n'+m:''}
+function fbUrl(k){const x=fbText();return k==='wa'?'https://wa.me/'+FB_WA+'?text='+encodeURIComponent(x):'mailto:'+FB_MAIL+'?subject='+encodeURIComponent('CodeLadder feedback ('+$('#ft').value+')')+'&body='+encodeURIComponent(x)}
+function sendFb(k){if(!fbText())return $('#fe').textContent='Please type your feedback first.';$('#fe').textContent='';if(k==='wa')window.open(fbUrl(k),'_blank','noopener');else location.href=fbUrl(k)}
+const CT={half:{n:'Part 1 (chapters 1-5)',p:20000,u:5},full:{n:'Full course (all 10 chapters)',p:40000,u:10}},TT=k=>k==='wd'?CT:TIERS,LN=k=>k==='wd'?'Web Developer course':L[k][0];
+const inl=t=>esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>');
+const md=s=>s.split('\n\n').map(b=>b.startsWith('~~~')?'<pre>'+esc(b.replace(/^~~~\n?/,'').replace(/\n?~~~$/,''))+'</pre>':b.startsWith('# ')?'<h3>'+inl(b.slice(2))+'</h3>':b.startsWith('- ')?'<ul>'+b.split('\n').map(x=>'<li>'+inl(x.slice(2))+'</li>').join('')+'</ul>':'<p>'+inl(b.replace(/\n/g,' '))+'</p>').join('');
+const CH=[
+{t:'How the Web Works',l:'js',c:'console.log("I am becoming a web developer!");',k:'Run the line, then change the message to your own name and run it again.',b:`# What is a website?
+
+A website is a set of files kept on a computer that is always switched on and connected to the internet. That computer is the **server**. Your phone or laptop is the **client**, and the app that shows the page is the **browser**, like Chrome.
+
+# What happens when you open a page?
+
+Think of a restaurant. You tell the waiter what you want: that is the **request**. The kitchen prepares it and the waiter brings it back: that is the **response**. Your browser then shows it. All of this takes a fraction of a second.
+
+# The three languages of the web
+
+- **HTML** is the structure, like the walls and rooms of a house.
+- **CSS** is the style, like paint and furniture.
+- **JavaScript** is the behaviour, like lights and doors that make things happen.
+
+# What does a web developer do?
+
+A **front-end** developer builds what people see and touch. A **back-end** developer builds the servers and databases behind it. Someone who does both is **full-stack**. This course takes you from the first to the second.
+
+# Your first line of code
+
+~~~
+console.log("I am becoming a web developer!");
+~~~
+
+- \`console.log\` tells the computer to print a message.
+- The text inside the quotes is the message. Quotes mark it as text.
+- The semicolon ends the instruction, like a full stop.`},
+{t:'What is HTML?',l:'web',c:'<h1>Hello, world!</h1>\n<p>My first web page.</p>',k:'Add an `<h2>` heading that says About Me and a paragraph about yourself, then run it.',b:`# What is HTML?
+
+HTML stands for **HyperText Markup Language**. It is not a programming language. It **marks up** text, telling the browser what each piece is: a heading, a paragraph, a picture or a link. Think of a school textbook with titles, headings and paragraphs. HTML does the same job for a web page.
+
+# Tags: the building blocks
+
+HTML is made of **tags**: words inside angle brackets. Most come in pairs, an **opening tag** and a **closing tag** with a slash.
+
+~~~
+<h1>Hello, world!</h1>
+<p>My first web page.</p>
+~~~
+
+- \`<h1>\` opens the main heading and \`</h1>\` closes it.
+- \`<p>\` opens a paragraph and \`</p>\` closes it.
+- Opening tag, content and closing tag together make an **element**.
+
+# Headings and common tags
+
+Headings run from \`<h1>\`, the biggest, to \`<h6>\`, the smallest. Use one \`<h1>\` per page, like a book title.
+
+- \`<p>\` a paragraph
+- \`<a>\` a link
+- \`<img>\` a picture
+- \`<ul>\` and \`<li>\` a bulleted list`},
+{t:'Your First Web Page',l:'web',c:'<h1>Ada Obi</h1>\n<p>Welcome to my first website.</p>\n<h2>My Goals</h2>\n<ul>\n  <li>Learn HTML</li>\n  <li>Learn CSS</li>\n  <li>Become a web developer</li>\n</ul>\n<a href="https://code-leader.github.io/Code--Leader-/">Visit CodeLadder</a>',k:'Change the name and goals to yours and add one more list item.',b:`# The skeleton of every page
+
+~~~
+<!DOCTYPE html>
+<html>
+  <head><title>My Page</title></head>
+  <body>
+    <h1>Welcome!</h1>
+  </body>
+</html>
+~~~
+
+- \`<!DOCTYPE html>\` tells the browser this page uses modern HTML.
+- \`<html>\` wraps the whole page.
+- \`<head>\` holds information that is not shown. \`<title>\` is the text on the browser tab.
+- \`<body>\` holds everything people see.
+
+The spaces at the start of lines are **indentation**. They are optional but make code easier to read.
+
+# Links, pictures and lists
+
+~~~
+<a href="https://code-leader.github.io/Code--Leader-/">Visit CodeLadder</a>
+<img src="photo.jpg" alt="A photo of me">
+<ul><li>Learn HTML</li><li>Learn CSS</li></ul>
+~~~
+
+- \`href\`, \`src\` and \`alt\` are **attributes**: extra information inside a tag.
+- \`alt\` describes the picture for screen readers. Always write one.
+- \`<img>\` has no closing tag. A few tags, like \`<br>\`, do not need one.
+
+# Common mistakes
+
+- Forgetting the slash in a closing tag.
+- Forgetting the quotes after \`href=\`.
+- Writing \`<hl>\` (letter L) instead of \`<h1>\`.`},
+{t:'Styling with CSS',l:'web',c:'<style>\n  body { background: #f3f6ff; font-family: Arial; padding: 20px; }\n  h1 { color: #1d4ed8; }\n  p { font-size: 20px; color: #333; }\n</style>\n<h1>Styled page</h1>\n<p>CSS makes pages beautiful.</p>',k:'Change the colours and font size, then add `text-align: center;` to the h1 rule.',b:`# What is CSS?
+
+CSS stands for **Cascading Style Sheets**. HTML builds the page and CSS makes it beautiful: colours, fonts, spacing and layout.
+
+# How a CSS rule works
+
+~~~
+h1 {
+  color: #1d4ed8;
+  font-size: 40px;
+}
+~~~
+
+- \`h1\` is the **selector**: it chooses which elements to style.
+- Inside the curly brackets are **declarations**.
+- Each declaration is a **property** (\`color\`), a colon, a **value** (\`#1d4ed8\`) and a semicolon.
+
+# Useful properties
+
+- \`color\` for text colour and \`background\` for background colour
+- \`font-size\` and \`font-family\` for text
+- \`padding\` for space inside and \`margin\` for space outside
+- \`text-align\` to centre text
+
+CSS goes inside a \`<style>\` tag, so the page below styles itself.`},
+{t:'Layout and Responsive Design',l:'web',c:'<style>\n  .row { display: flex; gap: 10px; }\n  .box { background: gold; padding: 20px; border-radius: 8px; }\n  @media (max-width: 600px) { .row { flex-direction: column; } }\n</style>\n<div class="row">\n  <div class="box">One</div>\n  <div class="box">Two</div>\n  <div class="box">Three</div>\n</div>',k:'Add a fourth box and change the gap. Then shrink your browser window to watch the layout change.',b:`# The box model
+
+Every element is a box: **content**, then **padding** (space inside), then **border**, then **margin** (space outside). Understanding this fixes most spacing problems.
+
+# Flexbox: putting things side by side
+
+~~~
+.row { display: flex; gap: 10px; }
+.box { background: gold; padding: 20px; }
+~~~
+
+- \`display: flex\` lines the children up in a row.
+- \`gap\` adds space between them.
+- \`justify-content: center\` centres them.
+
+# Responsive design
+
+People use phones, tablets and computers. A **media query** changes the style on small screens:
+
+~~~
+@media (max-width: 600px) {
+  .row { flex-direction: column; }
+}
+~~~
+
+This says: on screens 600px wide or less, stack the boxes in a column. Build for phones first, then add rules for bigger screens. You have now finished Part 1: you can build and style real pages.`},
+{t:'JavaScript Basics',l:'js',c:'let name = "Ada";\nlet age = 21;\nif (age >= 18) {\n  console.log(name + " is an adult");\n}\nfunction greet(person) {\n  return "Hello, " + person + "!";\n}\nconsole.log(greet(name));\nfor (let i = 1; i <= 3; i++) {\n  console.log("Round " + i);\n}',k:'Change age to 15 and see what happens, then write a second function of your own.',b:`# Why JavaScript?
+
+HTML and CSS make a page that looks good but does nothing. **JavaScript** makes it think and react: calculating, deciding and responding to clicks.
+
+# Variables, decisions, functions and loops
+
+~~~
+let name = "Ada";
+let age = 21;
+if (age >= 18) {
+  console.log(name + " is an adult");
+}
+function greet(person) {
+  return "Hello, " + person + "!";
+}
+console.log(greet(name));
+for (let i = 1; i <= 3; i++) {
+  console.log("Round " + i);
+}
+~~~
+
+- \`let\` creates a **variable**, a labelled box that stores a value.
+- \`if\` makes a **decision**. The code in the braces runs only if the condition is true.
+- \`function\` packages code you can reuse. \`return\` sends a result back.
+- \`for\` is a **loop**. It repeats code: start at 1, continue while \`i <= 3\`, add 1 each time.`},
+{t:'JavaScript Meets the Page',l:'web',c:'<button id="b">Click me</button>\n<p id="msg">Waiting...</p>\n<script>\n  document.getElementById("b").onclick = function () {\n    document.getElementById("msg").textContent = "You clicked!";\n  };\n<\/script>',k:'Add a second button that changes the message to something different.',b:`# The DOM and events
+
+The browser turns your HTML into a tree of objects called the **DOM**. JavaScript can find any element and change it, and it can listen for **events** like clicks.
+
+~~~
+<button id="b">Click me</button>
+<p id="msg">Waiting...</p>
+<script>
+  document.getElementById("b").onclick = function () {
+    document.getElementById("msg").textContent = "You clicked!";
+  };
+<\/script>
+~~~
+
+- \`getElementById("b")\` finds the element whose id is b.
+- \`onclick\` says what to do when it is clicked.
+- \`textContent\` changes the words inside an element.
+- The \`<script>\` tag holds your JavaScript inside the page.
+
+This is how buttons, menus, forms and games on websites work.`},
+{t:'Git and GitHub',l:'',c:'',k:'Do this now: publish the page you built in Chapter 3 on GitHub Pages and send the link to a friend.',b:`# Why Git and GitHub?
+
+**Git** saves versions of your project so you can go back if you break something. **GitHub** keeps those versions online and can publish your website for free with **GitHub Pages**. This is exactly how CodeLadder is published.
+
+# The basic commands
+
+~~~
+git init
+git add .
+git commit -m "My first version"
+git push
+~~~
+
+- \`git init\` starts tracking a folder.
+- \`git add .\` picks all changed files.
+- \`git commit -m "..."\` saves a version with a message.
+- \`git push\` uploads it to GitHub.
+
+# Publish your first site
+
+- Create a free account at github.com and a new public repository.
+- Upload your \`index.html\` with Add file, then Upload files.
+- Open Settings, then Pages, choose the main branch and save.
+- After a minute your site is live at yourname.github.io/repository.`},
+{t:'Backend and Databases',l:'sql',c:'SELECT name, city FROM users WHERE age >= 18;',k:'The practice table is users (id, name, age, city). Change the condition to find people in Lagos: `WHERE city = "Lagos"`.',b:`# What is the back end?
+
+When you log in or buy something, the page cannot remember you alone. A **server** receives the request, checks a **database**, and sends a response. The most common server languages are JavaScript (Node.js), Python and PHP, all of which you can learn on CodeLadder.
+
+# What is a database?
+
+A database stores information in **tables**, like a spreadsheet: each row is one record and each column is one detail. **SQL** is the language you use to ask a database for information.
+
+~~~
+SELECT name, city FROM users WHERE age >= 18;
+~~~
+
+- \`SELECT name, city\` chooses which columns you want.
+- \`FROM users\` says which table.
+- \`WHERE age >= 18\` keeps only the adults.
+
+# APIs
+
+Programs also talk to each other through **APIs**. Your site asks an API for data, usually in a format called **JSON**, and shows it on the page.`},
+{t:'Projects, Portfolio and Your First Job',l:'web',c:'<h1>Ada Obi</h1>\n<p>Web developer from Lagos.</p>\n<h2>My projects</h2>\n<ul><li>My first web page</li></ul>\n<a href="mailto:you@example.com">Contact me</a>',k:'Make it yours, style it with CSS from Chapter 4, then publish it on GitHub Pages.',b:`# Build, show, earn
+
+Learning is not finished until you have built things. Three projects to build now:
+
+- **A personal portfolio**: your name, about you, your projects and how to contact you.
+- **A business page**: a landing page for a shop or small business near you.
+- **A small tool**: a calculator, to-do list or quiz using JavaScript.
+
+# Your portfolio skeleton
+
+~~~
+<h1>Ada Obi</h1>
+<p>Web developer from Lagos.</p>
+<h2>My projects</h2>
+<ul><li>My first web page</li></ul>
+<a href="mailto:you@example.com">Contact me</a>
+~~~
+
+# Getting your first work
+
+- Publish every project on GitHub Pages and keep the links in one place.
+- Offer to build a page for a local business, for free or cheaply, to get your first example.
+- Share your work on WhatsApp status, LinkedIn and X, and keep improving.
+- Keep learning: React for bigger apps, Node.js for back ends, and any language on CodeLadder.`}];
+const cpay=n=>me()?pay('wd',n):auth('up');
+const WDB=`<a href="#/course" class="cd" style="display:block;text-decoration:none;color:inherit;margin:0 0 20px;border-color:#f5c44a"><h3>🎓 Want to become a web developer?</h3><p class="mu" style="margin:0 0 10px">One path with HTML, CSS, JavaScript and more, written like a book. Chapter 1 is free.</p><span class="btn s">Start the course →</span></a>`;
+function courseHome(){const t=CT[tier('wd')],ic=j=>isD('wd',j)?'✓':j<1?'<em class="tag">Free</em>':(t&&j<t.u)?'':'🔒';
+$('#app').innerHTML=`<div class="w"><div class="sec"><h2>🎓 Become a Web Developer</h2><p class="mu">A complete beginner-to-job-ready path in ${CH.length} chapters. Read each chapter like a book, see the code explained line by line, then run it yourself in the terminal. HTML, CSS and JavaScript are all inside, so you never have to hunt for lessons.</p>${t?`<p><span class="tag pb">You have: ${t.n}</span></p>`:''}<div class="grid"><div class="cd pr"><h3>Free preview</h3><b>₦0</b><ul><li>Chapter 1: how the web works</li></ul><a class="btn s" href="#/wd/0">Start free</a></div><div class="cd pr"><h3>Part 1</h3><b>₦20,000</b><ul><li>Chapters 1-5</li><li>HTML, CSS and layout</li><li>Build and style real pages</li></ul><button class="btn s" onclick="cpay('half')">Unlock Part 1</button></div><div class="cd pr hot"><h3>Full course ⭐</h3><b>₦40,000</b><ul><li>All 10 chapters</li><li>JavaScript, Git, databases, portfolio</li><li>Bought Part 1? Pay only ₦20,000 more</li></ul><button class="btn s" onclick="cpay('full')">Unlock full course</button></div></div><h3 style="margin-top:24px">The 10 chapters</h3>${CH.map((x,j)=>`<a class="li" href="#/wd/${j}"><span>${j+1}</span>${x.t}<i>${ic(j)}</i></a>`).join('')}</div></div>`}
+function chapter(i){const c=CH[i];if(!c)return courseHome();const u=me(),T=tier('wd'),t=CT[T],ok=i<1||(!!t&&i<t.u);if(u&&ok){pg().last='wd/'+i;save()}
+const ic=j=>isD('wd',j)?'✓':j<1?'<em class="tag">Free</em>':(t&&j<t.u)?'':'🔒';
+const lst=CH.map((x,j)=>`<a class="li ${j==i?'on':''}" href="#/wd/${j}"><span>${j+1}</span>${x.t}<i>${ic(j)}</i></a>`).join('');
+const nav2=`<p>${i>0?`<a class="btn g s" href="#/wd/${i-1}">← Previous</a> `:''}${i<CH.length-1?`<a class="btn s" href="#/wd/${i+1}">Next chapter →</a>`:''}</p>`;
+const body=ok?`<span class="tag">Chapter ${i+1} of ${CH.length}</span>${i<1?' <span class="tag">Free preview</span>':''}<h2 style="margin-top:12px">${c.t}</h2>${md(c.b)}<h3>Try it yourself</h3><p class="mu">${inl(c.k)}</p>${c.l?term(c.l,c.c):''}<p><button class="btn ${isD('wd',i)?'g':''}" onclick="done('wd',${i})">${isD('wd',i)?'✓ Completed':'Mark as complete'}</button></p>${nav2}`:
+`<h2>🔒 Chapter ${i+1}: ${c.t}</h2><p class="mu">Unlock this chapter with a payment, then enter the code you receive.</p>${Object.entries(CT).filter(([n,x])=>x.u>i).map(([n,x])=>`<p><button class="btn ${n==='full'?'':'g'}" onclick="pay('wd','${n}')">${T?'Upgrade to':'Unlock'} ${x.n} – ₦${due('wd',n).toLocaleString()}${T?' more':''}</button></p>`).join('')}${nav2}`;
+$('#app').innerHTML=`<div class="w"><p><a href="#/course">← Course overview</a></p><h1>🎓 Web Developer Course ${T?`<span class="tag">${CT[T].n}</span>`:''}</h1><div class="lay"><aside>${lst}</aside><article class="cd">${body}</article></div></div>`}
 addEventListener('hashchange',()=>{modal();render()});render();
 </script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5ecde6d93e9c4c93bb07a9cc2fc87e91"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>
